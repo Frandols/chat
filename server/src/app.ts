@@ -78,7 +78,6 @@ app.get(
 
 httpServer.listen(
     port,
-    host,
     () => {
         logger.info(`Server running version ${version}.`)
         logger.info(`http://${host}:${port}`)
