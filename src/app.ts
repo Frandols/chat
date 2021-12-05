@@ -9,7 +9,6 @@ import path from 'path'
 import socket from './socket'
 
 const port = config.get<number>('port')
-const host = config.get<string>('host')
 const corsOrigin = config.get<string>('corsOrigin')
 
 const app = express()
@@ -78,10 +77,8 @@ app.get(
 
 httpServer.listen(
     port, 
-    host, 
     () => {
-        logger.info(`Server version ${version} listening.`)
-        logger.info(`http://${host}:${port}`)
+        logger.info(`Server version ${version} listening at port ${port}.`)
 
         socket({ io })
     }
