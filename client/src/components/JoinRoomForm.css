@@ -1,0 +1,38 @@
+.join-room-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 350px;
+    min-height: 350px;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: .5rem;
+    margin: auto;
+}
+.join-room-form-title {
+    font-weight: 600;
+    text-align: center;
+}
+.join-room-form-legend {
+    text-align: center;
+}
+.join-room-form-input,
+.join-room-form-select,
+.join-room-form-button {
+    border: none;
+    outline: none;
+    border-radius: .25rem;
+}
+.join-room-form-input,
+.join-room-form-select {
+    padding: 12px;
+    background-color: var(--light-gray);
+}
+.join-room-form-button {
+    padding: 12px;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+}

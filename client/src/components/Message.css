@@ -1,0 +1,32 @@
+.message-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    padding: 0 1rem 1rem 1rem;
+}
+.message {
+    padding: .5rem;
+    border-radius: .25rem;
+}
+.message-in {
+    justify-content: flex-start;
+}
+.message-in .message {
+    background-color: var(--light-gray);
+    color: #000;
+}
+.message-out {
+    justify-content: flex-end;
+}
+.message-out .message {
+    background-color: var(--primary-light);
+    color: #000;
+}
+.message-header {
+    text-align: start;
+    font-size: 14px;
+}
+.message-footer {
+    text-align: end;
+    font-size: 12px;
+}
