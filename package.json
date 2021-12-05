@@ -10,8 +10,7 @@
   "scripts": {
     "dev": "concurrently \"nodemon --config nodemon.json src/app.ts\" \"cd client && npm start\"",
     "start": "node dist/src/app.js",
-    "build": "tsc",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "build": "tsc && cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
