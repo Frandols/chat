@@ -1,18 +1,22 @@
 {
-  "name": "server",
+  "name": "chatting",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "14.x",
-    "npm": "6.x"
-  },
   "scripts": {
-    "dev": "concurrently \"nodemon --config nodemon.json server/src/app.ts\" \"cd client && npm start\"",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\"",
     "start": "node server/dist/src/app.js",
     "build": "cd server && npm install && npm run build && cd .. && cd client && npm install && npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frandols/chat-app.git"
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Frandols/chat-app/issues"
+  },
+  "homepage": "https://github.com/Frandols/chat-app#readme"
 }

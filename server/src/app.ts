@@ -3,13 +3,14 @@ import { createServer } from 'http'
 import { Server } from 'socket.io'
 import logger from './utils/logger'
 import { version } from '../package.json'
-import config from 'config'
+import config from '../config'
 import path from 'path'
 
 import socket from './socket'
 
-const port = config.get<number>('port')
-const corsOrigin = config.get<string>('corsOrigin')
+const corsOrigin = <string>config.corsOrigin
+const port = <number>config.port
+const host = <string>config.host
 
 const app = express()
 
@@ -76,9 +77,11 @@ app.get(
 )
 
 httpServer.listen(
-    port, 
+    port,
+    host,
     () => {
-        logger.info(`Server version ${version} listening at port ${port}.`)
+        logger.info(`Server running version ${version}.`)
+        logger.info(`http://${host}:${port}`)
 
         socket({ io })
     }
