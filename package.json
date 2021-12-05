@@ -8,12 +8,10 @@
     "npm": "6.x"
   },
   "scripts": {
-    "dev-server": "nodemon --config nodemon.json src/app.ts",
-    "dev-client": "cd client && npm start",
-    "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
-    "build-client": "cd client && npm install && npm run build",
+    "dev": "concurrently \"nodemon --config nodemon.json src/app.ts\" \"cd client && npm start\"",
     "start": "node dist/src/app.js",
-    "build": "npm run build-client && tsc"
+    "build": "tsc",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
