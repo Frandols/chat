@@ -3,12 +3,13 @@ import { createServer } from 'http'
 import { Server } from 'socket.io'
 import logger from './utils/logger'
 import { version } from '../package.json'
+import config from 'config'
 import path from 'path'
 
 import socket from './socket'
 
-const port = process.env.PORT || 4000
-const corsOrigin = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000'
+const port = config.get<number>('port')
+const corsOrigin = config.get<string>('corsOrigin')
 
 const app = express()
 
