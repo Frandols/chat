@@ -1,7 +1,5 @@
 import JoinRoomForm from './JoinRoomForm'
-import MessagesHeader from './MessagesHeader'
-import Messages from './Messages'
-import SendMessageForm from './SendMessageForm'
+import Room from './Room'
 
 import { useSockets } from '../context/socket.context'
 
@@ -13,11 +11,7 @@ const Chat = () => {
             className='chat'>
             {
                 roomId
-                ? <>
-                    <MessagesHeader/>
-                    <Messages/>
-                    <SendMessageForm/>
-                </>
+                ? <Room/>
                 : <JoinRoomForm/>
             }
         </div>
