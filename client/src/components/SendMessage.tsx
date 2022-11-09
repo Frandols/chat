@@ -1,8 +1,10 @@
-import { useRef } from 'react'
 import EVENTS from '../config/events'
-import './SendMessageForm.css'
+
+import { useRef } from 'react'
 
 import { useSockets } from '../context/socket.context'
+
+import './SendMessage.css'
 
 const SendMessageForm = () => {
     const newMessageRef = useRef(null)

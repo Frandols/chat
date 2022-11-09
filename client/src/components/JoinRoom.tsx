@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import EVENTS from '../config/events'
 
-import './JoinRoomForm.css'
+import './JoinRoom.css'
 
 import { useSockets } from '../context/socket.context'
 
