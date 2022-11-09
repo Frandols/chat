@@ -1,4 +1,4 @@
-import JoinRoomForm from './JoinRoomForm'
+import JoinRoomForm from './JoinRoom'
 import Room from './Room'
 
 import { useSockets } from '../context/socket.context'
