@@ -1,6 +1,6 @@
 import MessagesHeader from './MessagesHeader'
 import Messages from './Messages'
-import SendMessageForm from './SendMessageForm'
+import SendMessageForm from './SendMessage'
 
 import './Room.css'
 
