@@ -1,0 +1,38 @@
+.login {
+    display: grid;
+    grid-template-rows: 75px auto 2.5rem 2.5rem;
+    justify-items: center;
+    grid-gap: 1rem;
+    width: 400px;
+}
+
+.login-title {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.login-input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: .5rem;
+    padding: 0 .5rem;
+    color: #fff;
+    background-color: #343845;
+}
+
+.login-button {
+    background-color: #0074e0;
+    width: 100%;
+    height: 2.5rem;
+    border-radius: .5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.login-button:hover {
+    background-color: #0068ca;
+}

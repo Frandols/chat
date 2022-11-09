@@ -1,38 +1,20 @@
-import './App.css'
-
-import LogInForm from './components/LogInForm'
-import JoinRoomForm from './components/JoinRoomForm'
-import MessagesHeader from './components/MessagesHeader'
-import Messages from './components/Messages'
-import SendMessageForm from './components/SendMessageForm'
+import Login from './components/Login'
+import Chat from './components/Chat'
 
 import { useSockets } from './context/socket.context'
 
+import './App.css'
+
 const App = () => {
-    const {
-        username,
-        roomId
-    } = useSockets()
+    const { username } = useSockets()
 
     return (
         <main
             className="site-main">
             {
-                username &&
-                (
-                    roomId ?
-                    <>
-                        <MessagesHeader/>
-                        <Messages/>
-                        <SendMessageForm/>
-                    </>
-                    :
-                    <JoinRoomForm/>
-                )
-            }
-            {
-                !username &&
-                <LogInForm/>
+                username
+                ? <Chat/>
+                : <Login/>
             }
         </main>
     )

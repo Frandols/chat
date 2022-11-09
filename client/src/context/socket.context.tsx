@@ -39,8 +39,8 @@ const SocketsProvider = (props: any) => {
         setUsername
     ] = useState('')
     const [
-        roomId, 
-        setRoomId
+        room, 
+        setRoom
     ] = useState('')
     const [
         rooms, 
@@ -63,7 +63,7 @@ const SocketsProvider = (props: any) => {
     socket.on(
         EVENTS.SERVER.ROOM_JOINED,
         value => {
-            setRoomId(value)
+            setRoom(value)
 
             setMessages([])
         }
@@ -71,7 +71,7 @@ const SocketsProvider = (props: any) => {
 
     socket.on(
         EVENTS.SERVER.ROOM_LEFT,
-        () => setRoomId('')
+        () => setRoom('')
     )
 
     useEffect(
@@ -106,7 +106,7 @@ const SocketsProvider = (props: any) => {
             value={{
                 socket,
                 rooms,
-                roomId,
+                roomId: room,
                 username,
                 setUsername,
                 messages,
