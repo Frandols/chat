@@ -2,11 +2,16 @@ import EVENTS from '../config/events'
 
 import { useRef } from 'react'
 
-import { useSockets } from '../context/socket.context'
+import {
+    Input,
+    Button
+} from '../components'
+
+import { useSockets } from '../context/socket'
 
 import './SendMessage.css'
 
-const SendMessageForm = () => {
+const SendMessage = () => {
     const newMessageRef = useRef(null)
 
     const {
@@ -52,18 +57,16 @@ const SendMessageForm = () => {
         <form
             className="send-message-form"
             onSubmit={handleSendMessage}>
-            <input
-                className="send-message-form-input"
-                placeholder="Message..."
+            <Input
+                placeholder='Message...'
                 ref={newMessageRef}
             />
-            <button
-                className="send-message-form-button"
-                type="submit">
+            <Button
+                type='submit'>
                 Send
-            </button>
+            </Button>
         </form>
     )
 }
 
-export default SendMessageForm
+export default SendMessage

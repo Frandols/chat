@@ -1,30 +1,8 @@
 .send-message-form {
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    height: 72px;
+    height: 100%;
     padding: 1rem;
-    background-color: #fff;
-}
-.send-message-form-input,
-.send-message-form-button {
-    border: none;
-    outline: none;
-    border-radius: .25rem;
-}
-.send-message-form-input {
-    width: calc(100% - 8rem - 10px);
-    height: 100%;
-    margin-right: 10px;
-    padding: 0 1rem;
-    background-color: var(--light-gray);
-}
-.send-message-form-button {
-    width: 8rem;
-    height: 100%;
-    background-color: var(--primary-light);
-    color: var(--primary);
-    font-weight: 600;
-    cursor: pointer;
+    display: grid;
+    grid-template-columns: auto 128px;
+    gap: 1rem;
 }

@@ -1,0 +1,5 @@
+.room-list {
+    height: 100%;
+    overflow-y: scroll;
+    background-color: #1c1e26;
+}

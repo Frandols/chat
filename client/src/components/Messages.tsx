@@ -3,19 +3,16 @@ import {
     useRef 
 } from 'react'
 
+import { Message } from '../components'
+
+import { useSockets } from '../context/socket'
+
 import './Messages.css' 
-
-import Message from './Message'
-
-import { useSockets } from '../context/socket.context'
 
 const Messages = () => {
     const messagesRef = useRef(null)
 
-    const {
-        roomId,
-        messages
-    } = useSockets()
+    const { messages } = useSockets()
 
     useEffect(
         () => {
@@ -29,8 +26,6 @@ const Messages = () => {
         }, 
         [messages]
     )
-
-    if(!roomId) return <h1 className="join-message">Join a room to start.</h1>
     
     return (
         <div
@@ -38,15 +33,13 @@ const Messages = () => {
             ref={messagesRef}>
             {
                 messages.map(
-                    (message, i) => (
-                        <Message
-                            key={i}
-                            message={message.message}
-                            username={message.username}
-                            time={message.time}
-                            messageOut={message.messageOut || null}
-                        />
-                    )
+                    (
+                        message, 
+                        index
+                    ) => <Message
+                        key={index}
+                        {...message}
+                    />
                 )
             }
         </div>

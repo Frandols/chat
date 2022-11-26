@@ -1,7 +1,11 @@
-import Login from './components/Login'
-import Chat from './components/Chat'
+import { AnimatePresence } from 'framer-motion'
 
-import { useSockets } from './context/socket.context'
+import { 
+    Login, 
+    Chat 
+} from './components'
+
+import { useSockets } from './context/socket'
 
 import './App.css'
 
@@ -9,14 +13,14 @@ const App = () => {
     const { username } = useSockets()
 
     return (
-        <main
-            className="site-main">
+        <AnimatePresence
+            mode='wait'>
             {
                 username
-                ? <Chat/>
-                : <Login/>
+                ? <Chat key='chat' />
+                : <Login key='login' />
             }
-        </main>
+        </AnimatePresence>
     )
 }
 

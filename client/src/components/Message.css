@@ -2,30 +2,37 @@
     display: flex;
     position: relative;
     width: 100%;
-    padding: 0 1rem 1rem 1rem;
+    margin-top: 1rem;
 }
+
 .message {
     padding: .5rem;
-    border-radius: .25rem;
+    border-radius: .5rem;
+    min-width: 128px;
+    color: #fff;
 }
+
 .message-in {
     justify-content: flex-start;
 }
+
 .message-in .message {
-    background-color: var(--light-gray);
-    color: #000;
+    background-color: #343845;
 }
+
 .message-out {
     justify-content: flex-end;
 }
+
 .message-out .message {
-    background-color: var(--primary-light);
-    color: #000;
+    background-color: #0074e0;
 }
+
 .message-header {
     text-align: start;
     font-size: 14px;
 }
+
 .message-footer {
     text-align: end;
     font-size: 12px;

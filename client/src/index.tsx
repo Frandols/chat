@@ -1,17 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
+
+import SocketContextProvider from './context/socket'
+
+import { SiteLayout } from './layouts' 
+
 import App from './App'
-import reportWebVitals from './reportWebVitals'
 
-import SocketsProvider from './context/socket.context'
+const container = document.getElementById('root')
+const root = createRoot(container)
 
-ReactDOM.render(
-    <React.StrictMode>
-        <SocketsProvider>
+root.render(
+    <SocketContextProvider>
+        <SiteLayout>
             <App/>
-        </SocketsProvider>
-    </React.StrictMode>,
-    document.getElementById('root')
+        </SiteLayout>
+    </SocketContextProvider>
 )
-
-reportWebVitals()

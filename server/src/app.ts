@@ -1,23 +1,28 @@
+import config from '../config'
+
+import { version } from '../package.json'
+
 import express from 'express'
+import path from 'path'
+
 import { createServer } from 'http'
 import { Server } from 'socket.io'
-import logger from './utils/logger'
-import { version } from '../package.json'
-import config from '../config'
-import path from 'path'
 
 import socket from './socket'
 
-const corsOrigin = <string>config.corsOrigin
-const port = <number>config.port
-const host = <string>config.host
+import { logger } from './utils'
+
+const {
+    corsOrigin,
+    port,
+    host
+} = config
 
 const app = express()
-
-const httpServer = createServer(app)
+const server = createServer(app)
 
 const io = new Server(
-    httpServer, 
+    server, 
     {
         cors: {
             origin: corsOrigin,
@@ -76,10 +81,10 @@ app.get(
     }
 )
 
-httpServer.listen(
+server.listen(
     port,
     () => {
-        logger.info(`Server running version ${version}.`)
+        logger.info(`Server running version ${version}`)
         logger.info(`http://${host}:${port}`)
 
         socket({ io })

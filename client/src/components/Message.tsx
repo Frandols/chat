@@ -1,4 +1,8 @@
+import { motion } from 'framer-motion'
+
 import './Message.css'
+
+import { MessageComponentAnimations } from '../animations'
 
 const Message = ({
     message,
@@ -9,8 +13,16 @@ const Message = ({
     return (
         <div
             className={`message-container ${messageOut === true ? 'message-out' : 'message-in'}`}>
-            <div
-                className="message">
+            <motion.div
+                className="message"
+                variants={MessageComponentAnimations.message}
+                initial={{
+                    ...MessageComponentAnimations.message.hidden,
+                    x: messageOut 
+                        ? 50 
+                        : -50
+                }}
+                animate='visible'>
                 {
                     !messageOut
                     ? (
@@ -28,7 +40,7 @@ const Message = ({
                     className="message-footer">
                     {time}
                 </footer>
-            </div>
+            </motion.div>
         </div>
     )
 }

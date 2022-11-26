@@ -1,3 +1,2 @@
-export default {
-    SOCKET_URL: process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:4000'
-}
+export * from './socket';
+export { default as EVENTS } from './events';

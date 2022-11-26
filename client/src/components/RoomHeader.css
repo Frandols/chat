@@ -1,0 +1,16 @@
+.room-header {
+    display: grid;
+    grid-template-columns: 40px auto 128px;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.room-header img {
+    justify-self: center;
+}
+
+.room-header h1 {
+    color: #fff;
+    font-size: 1.2rem;
+}

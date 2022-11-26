@@ -1,0 +1,27 @@
+.no-room {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    justify-items: center;
+    padding: 0 25%;
+}
+
+.no-room h1 {
+    color: #fff;
+}
+
+.no-room p {
+    color: rgb(255, 255, 255, .5);
+}
+
+@media (max-width: 868px) {
+    .no-room {
+        display: none;
+    }
+}

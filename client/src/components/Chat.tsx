@@ -1,20 +1,45 @@
-import JoinRoomForm from './JoinRoom'
-import Room from './Room'
+import { 
+    AnimatePresence,
+    motion 
+} from 'framer-motion'
 
-import { useSockets } from '../context/socket.context'
+import {
+    Menu,
+    Room,
+    NoRoom
+} from '../components'
+
+import { useSockets } from '../context/socket'
+
+import './Chat.css'
+
+import { ChatComponentAnimations } from '../animations'
 
 const Chat = () => {
     const { roomId } = useSockets()
 
     return (
-        <div
-            className='chat'>
-            {
-                roomId
-                ? <Room/>
-                : <JoinRoomForm/>
-            }
-        </div>
+        <motion.div
+            className='chat'
+            variants={ChatComponentAnimations.chat}
+            initial='hidden'
+            animate='visible'
+            exit='hidden'
+            transition={{ 
+                duration: .2,
+                type: 'spring',
+                damping: 12.5
+            }}>
+            <Menu/>
+            <AnimatePresence
+                mode='wait'>
+                {
+                    roomId
+                    ? <Room key='room' />
+                    : <NoRoom key='noRoom' />
+                }
+            </AnimatePresence>
+        </motion.div>
     )
 }
 

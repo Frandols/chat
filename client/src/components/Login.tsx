@@ -2,10 +2,18 @@ import {
     useRef,
     useEffect
 } from 'react'
+import { motion } from 'framer-motion'
 
-import { useSockets } from '../context/socket.context'
+import {
+    Input,
+    Button
+} from '../components'
+
+import { useSockets } from '../context/socket'
 
 import './Login.css'
+
+import { LoginComponentAnimations } from '../animations'
 
 const Login = () => {
     const usernameRef = useRef(null)
@@ -35,9 +43,13 @@ const Login = () => {
     }
     
     return (
-        <form
+        <motion.form
             className='login'
-            onSubmit={handleSetUsername}>
+            onSubmit={handleSetUsername}
+            variants={LoginComponentAnimations.login}
+            initial='hidden'
+            animate='visible'
+            exit='exit'>
             <img
                 className='logo'
                 src='/assets/icon.svg'
@@ -49,17 +61,15 @@ const Login = () => {
                 className='login-title'>
                 Welcome, choose your <b>username</b>
             </h1>
-            <input
-                className='login-input'
-                placeholder="Username..."
+            <Input
+                placeholder='Username...'
                 ref={usernameRef}
             />
-            <button
-                className='login-button'
-                type="submit">
+            <Button
+                type='submit'>
                 Join
-            </button>
-        </form>
+            </Button>
+        </motion.form>
     )
 }
 

@@ -1,0 +1,53 @@
+.nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 0 1rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-site-link {
+    color: #fff;
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: 40px auto;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-site-link-title {
+    font-size: 1.2rem;
+}
+
+.nav-portfolio-link {
+    height: 40px;
+    background-color: rgb(255, 255, 255, 0);
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 30px auto;
+    border-radius: .5rem;
+    padding: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    gap: 10px;
+    font-size: 10px;
+    align-items: center;
+    transition: background-color .2s ease;
+}
+
+.nav-portfolio-link:hover {
+    background-color: rgb(255, 255, 255, .025);
+}
+
+.nav-portfolio-link-image {
+    border-radius: 50%;
+}
+
+.nav-portfolio-link-title {
+    font-size: 1rem;
+}

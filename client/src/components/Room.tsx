@@ -1,17 +1,27 @@
-import MessagesHeader from './MessagesHeader'
-import Messages from './Messages'
-import SendMessageForm from './SendMessage'
+import { motion } from 'framer-motion'
+
+import {
+    RoomHeader,
+    Messages,
+    SendMessage
+} from '../components'
 
 import './Room.css'
 
+import { RoomComponentAnimations } from '../animations'
+
 const Room = () => {
     return (
-        <div
-            className='room'>
-            <MessagesHeader/>
+        <motion.div
+            className='room'
+            variants={RoomComponentAnimations.room}
+            initial='hidden'
+            animate='visible'
+            exit='exit'>
+            <RoomHeader/>
             <Messages/>
-            <SendMessageForm/>
-        </div>
+            <SendMessage/>
+        </motion.div>
     )
 }
 

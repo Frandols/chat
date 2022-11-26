@@ -1,12 +1,16 @@
 import { 
+    SOCKET_URL, 
+    EVENTS 
+} from '../config'
+
+import io, { Socket } from 'socket.io-client'
+
+import { 
     createContext,
     useContext,
     useEffect,
     useState
 } from 'react'
-import io, { Socket } from 'socket.io-client'
-import { SOCKET_URL } from '../config/default'
-import EVENTS from '../config/events'
 
 interface Context {
     socket: Socket
@@ -16,7 +20,7 @@ interface Context {
         message: string 
         time: string 
         username: string,
-        messageOut?: boolean
+        messageOut: boolean
     }[]
     setMessages: Function
     roomId?: string
@@ -33,7 +37,7 @@ const SocketContext = createContext<Context>({
     messages: []
 })
 
-const SocketsProvider = (props: any) => {
+const SocketContextProvider = (props: any) => {
     const [
         username, 
         setUsername
@@ -52,7 +56,7 @@ const SocketsProvider = (props: any) => {
     ] = useState([])
 
     useEffect(() => {
-        window.onfocus = () => document.title = 'Chat App | Francisco De Los Santos'
+        window.onfocus = () => document.title = 'Wazaa'
     }, [])
 
     socket.on(
@@ -83,15 +87,16 @@ const SocketsProvider = (props: any) => {
                     username,
                     time
                 }) => {
-                    if(!document.hasFocus()) document.title = 'New message!'
+                    if(!document.hasFocus()) document.title = 'Message received'
                 
                     setMessages(
-                        messages => [
-                            ...messages, 
+                        currentMessages => [
+                            ...currentMessages,
                             { 
-                                message, 
+                                message,
                                 username, 
-                                time 
+                                time,
+                                messageOut: false 
                             }
                         ]
                     )
@@ -119,4 +124,4 @@ const SocketsProvider = (props: any) => {
 
 export const useSockets = () => useContext(SocketContext)
 
-export default SocketsProvider
+export default SocketContextProvider
