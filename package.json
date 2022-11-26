@@ -1,7 +1,7 @@
 {
-  "name": "chatting",
+  "name": "wazaa",
   "version": "1.0.0",
-  "description": "",
+  "description": "Socket based chat application.",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\"",
