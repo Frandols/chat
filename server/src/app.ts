@@ -10,7 +10,7 @@ import { Server } from 'socket.io'
 
 import socket from './socket'
 
-import { logger } from './utils'
+import { logger } from './utilities'
 
 const {
     corsOrigin,

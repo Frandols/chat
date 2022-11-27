@@ -10,13 +10,13 @@ import { useSockets } from './context/socket'
 import './App.css'
 
 const App = () => {
-    const { username } = useSockets()
+    const { user } = useSockets()
 
     return (
         <AnimatePresence
             mode='wait'>
             {
-                username
+                user
                 ? <Chat key='chat' />
                 : <Login key='login' />
             }

@@ -1,74 +1,90 @@
-import { nanoid } from 'nanoid'
-import logger from './utils/logger'
-import { 
+import { EVENTS } from '../config'
+
+import type { 
     Server,
     Socket
 } from 'socket.io'
 
-const EVENTS = {
-    CLIENT: {
-        CREATE_ROOM: "CREATE_ROOM",
-        JOIN_ROOM: "JOIN_ROOM",
-        LEAVE_ROOM: "LEAVE_ROOM",
-        SEND_MESSAGE: "SEND_MESSAGE"
-    },
-    SERVER: {
-        ROOMS: "ROOMS",
-        ROOM_JOINED: "ROOM_JOINED",
-        ROOM_LEFT: "ROOM_LEFT",
-        MESSAGE_SENDED: "MESSAGE_SENDED"
-    },
-    CONNECTION: "connection"
-}
+import { nanoid } from 'nanoid'
 
-const rooms: Record<string, { name: string }> = {}
+import { 
+    User,
+    Room
+} from './models'
+
+import { 
+    users,
+    rooms 
+} from './database'
+
+import { logger } from './utilities'
 
 const socket = ({ io }: { io: Server }) => {
     logger.info('Sockets enabled')
 
     io.on(
-        EVENTS.CONNECTION, 
+        EVENTS.CONNECT, 
         (socket: Socket) => {
-            logger.info(`User "${socket.id}" connected`)
+            const user: User = { id: socket.id }
+            
+            users.set(user)
+
+            logger.info(`"${user.id}" connected`)
 
             // Send actual rooms.
             socket.emit(
                 EVENTS.SERVER.ROOMS, 
-                rooms
+                rooms.get()
+            )
+
+            // When a user sets his name
+            socket.on(
+                EVENTS.CLIENT.SET_NAME,
+                name => {
+                    user.name = name
+
+                    logger.info(`"${user.id}" set his name to "${user.name}"`)
+
+                    socket.emit(
+                        EVENTS.SERVER.NAME_SETTED,
+                        user.name
+                    )
+                }
             )
 
             // When a user creates a new room.
             socket.on(
                 EVENTS.CLIENT.CREATE_ROOM, 
                 name => {
-                    logger.info(`User "${socket.id}" created room "${name}"`)
+                    const room = {
+                        id: nanoid(),
+                        name
+                    }
 
-                    // Create room id.
-                    const id = nanoid()
+                    rooms.set(room)
 
-                    // Save new room in rooms object.
-                    rooms[id] = { name }
+                    logger.info(`${user.name} created "${room.name}"`)
 
-                    socket.join(id)
+                    socket.join(room.id)
 
                     // Send updated rooms to all users connected.
                     socket
                     .broadcast
                     .emit(
                         EVENTS.SERVER.ROOMS, 
-                        rooms
+                        rooms.get()
                     )
 
                     // Send updated rooms to new room creator.
                     socket.emit(
                         EVENTS.SERVER.ROOMS, 
-                        rooms
+                        rooms.get()
                     )
 
                     // Send room creator the id of the of the room created
                     socket.emit(
                         EVENTS.SERVER.ROOM_JOINED, 
-                        id
+                        room.id
                     )
                 }
             )
@@ -77,13 +93,15 @@ const socket = ({ io }: { io: Server }) => {
             socket.on(
                 EVENTS.CLIENT.JOIN_ROOM,
                 id => {
-                    logger.info(`User "${socket.id}" joined room "${rooms[id].name}"`)
+                    const room = rooms.get(id) as Room
 
-                    socket.join(id)
+                    socket.join(room.id)
+
+                    logger.info(`${user.name} joined "${room.name}"`)
 
                     socket.emit(
                         EVENTS.SERVER.ROOM_JOINED, 
-                        id
+                        room.id
                     )
                 }
             )
@@ -92,9 +110,11 @@ const socket = ({ io }: { io: Server }) => {
             socket.on(
                 EVENTS.CLIENT.LEAVE_ROOM,
                 id => {
-                    logger.info(`User "${socket.id}" left room "${rooms[id].name}"`)
+                    const room = rooms.get(id) as Room
 
-                    socket.leave(id)
+                    socket.leave(room.id)
+
+                    logger.info(`${user.name} left "${room.name}"`)
 
                     socket.emit(EVENTS.SERVER.ROOM_LEFT)
                 }
@@ -104,22 +124,30 @@ const socket = ({ io }: { io: Server }) => {
             socket.on(
                 EVENTS.CLIENT.SEND_MESSAGE,
                 ({
-                    roomId,
-                    message,
-                    username
+                    room,
+                    message
                 }) => {
                     const date = new Date()
 
                     socket
-                    .to(roomId)
+                    .to(room)
                     .emit(
                         EVENTS.SERVER.MESSAGE_SENDED, 
                         {
                             message,
-                            username,
+                            user,
                             time: `${date.getHours()}:${date.getMinutes()}`
                         }
                     )
+                }
+            )
+
+            socket.on(
+                EVENTS.DISCONNECT,
+                () => {
+                    users.delete(user.id)
+
+                    logger.info(`${user.name ? user.name : `"${user.id}"`} disconnected`)
                 }
             )
         }

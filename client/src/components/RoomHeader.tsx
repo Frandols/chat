@@ -16,13 +16,13 @@ import { RoomHeaderComponentAnimations } from '../animations'
 const RoomHeader = () => {
     const { 
         socket,
-        rooms,
-        roomId
+        room,
+        rooms
     } = useSockets()
 
     const handleLeaveRoom = () => socket.emit(
         EVENTS.CLIENT.LEAVE_ROOM,
-        roomId
+        room
     )
 
     return (
@@ -37,14 +37,14 @@ const RoomHeader = () => {
             <AnimatePresence
                 mode='wait'>
                 <motion.h1
-                    key={roomId}
+                    key={room}
                     variants={RoomHeaderComponentAnimations.title}
                     initial='hidden'
                     animate='visible'
                     exit='exit'>
                     {
-                        roomId
-                        ? rooms[roomId].name
+                        room
+                        ? rooms[room].name
                         : null
                     }
                 </motion.h1>

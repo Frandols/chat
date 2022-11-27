@@ -16,29 +16,25 @@ import './Login.css'
 import { LoginComponentAnimations } from '../animations'
 
 const Login = () => {
-    const usernameRef = useRef(null)
+    const nameRef = useRef(null)
 
-    const { setUsername } = useSockets()
+    const { socket } = useSockets()
 
     useEffect(
         () => {
-            usernameRef.current.value = localStorage.getItem('username') || ''
+            nameRef.current.value = localStorage.getItem('user') || ''
         }, 
         []
     )
 
-    const handleSetUsername = e => {
-        e.preventDefault()
+    const handleSetUsername = event => {
+        event.preventDefault()
 
-        const username = usernameRef.current.value
+        const name = nameRef.current.value
 
-        if(username === '') return
-
-        setUsername(username)
-
-        localStorage.setItem(
-            'username', 
-            username
+        socket.emit(
+            'SET_NAME',
+            name
         )
     }
     
@@ -63,7 +59,7 @@ const Login = () => {
             </h1>
             <Input
                 placeholder='Username...'
-                ref={usernameRef}
+                ref={nameRef}
             />
             <Button
                 type='submit'>

@@ -12,14 +12,14 @@ import './Menu.css'
 import { MenuComponentAnimations } from '../animations'
 
 const Menu = () => {
-    const { roomId } = useSockets()
+    const { room } = useSockets()
 
     return (
         <motion.div
             className='menu'
             variants={MenuComponentAnimations.menu}
             animate={
-                roomId
+                room
                 ? 'hidden'
                 : 'visible'
             }

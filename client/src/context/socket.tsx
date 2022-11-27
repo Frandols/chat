@@ -14,60 +14,83 @@ import {
 
 interface Context {
     socket: Socket
-    username?: string
-    setUsername: Function
-    messages?: { 
+    user?: string
+    setUser: (user: string) => void
+    messages: { 
+        user: string
         message: string 
-        time: string 
-        username: string,
+        time: string
         messageOut: boolean
     }[]
-    setMessages: Function
-    roomId?: string
-    rooms: object
+    setMessages: (messages: { 
+        user: string
+        message: string 
+        time: string
+        messageOut: boolean
+    }[]) => void
+    rooms: Record<string, {
+        id: string
+        name: string
+    }>
+    room?: string
 }
 
 const socket = io(SOCKET_URL)
 
 const SocketContext = createContext<Context>({
     socket,
-    setUsername: () => false,
-    setMessages: () => false,
+    setUser: () => {},
+    setMessages: () => {},
     rooms: {},
     messages: []
 })
 
 const SocketContextProvider = (props: any) => {
     const [
-        username, 
-        setUsername
-    ] = useState('')
-    const [
-        room, 
-        setRoom
-    ] = useState('')
+        user, 
+        setUser
+    ] = useState(null)
     const [
         rooms, 
         setRooms
     ] = useState({})
     const [
+        room, 
+        setRoom
+    ] = useState(null)
+    const [
         messages, 
         setMessages
     ] = useState([])
 
-    useEffect(() => {
-        window.onfocus = () => document.title = 'Wazaa'
-    }, [])
+    useEffect(
+        () => {
+            window.onfocus = () => document.title = 'Wazaa'
+        }, 
+        []
+    )
+
+    socket.on(
+        EVENTS.SERVER.NAME_SETTED,
+        name => {
+            setUser(name)
+
+            localStorage.setItem(
+                'user', 
+                name
+            )
+        }
+    )
 
     socket.on(
         EVENTS.SERVER.ROOMS, 
-        value => setRooms(value)
+        rooms => setRooms(rooms)
     )
 
     socket.on(
         EVENTS.SERVER.ROOM_JOINED,
-        value => {
-            setRoom(value)
+        room => {
+            setRoom(room)
 
             setMessages([])
         }
@@ -75,7 +98,7 @@ const SocketContextProvider = (props: any) => {
 
     socket.on(
         EVENTS.SERVER.ROOM_LEFT,
-        () => setRoom('')
+        () => setRoom(null)
     )
 
     useEffect(
@@ -84,7 +107,7 @@ const SocketContextProvider = (props: any) => {
                 EVENTS.SERVER.MESSAGE_SENDED,
                 ({
                     message,
-                    username,
+                    user,
                     time
                 }) => {
                     if(!document.hasFocus()) document.title = 'Message received'
@@ -94,7 +117,7 @@ const SocketContextProvider = (props: any) => {
                             ...currentMessages,
                             { 
                                 message,
-                                username, 
+                                user, 
                                 time,
                                 messageOut: false 
                             }
@@ -111,9 +134,9 @@ const SocketContextProvider = (props: any) => {
             value={{
                 socket,
                 rooms,
-                roomId: room,
-                username,
-                setUsername,
+                room,
+                user,
+                setUsername: setUser,
                 messages,
                 setMessages
             }}

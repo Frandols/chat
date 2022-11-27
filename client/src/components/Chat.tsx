@@ -16,7 +16,7 @@ import './Chat.css'
 import { ChatComponentAnimations } from '../animations'
 
 const Chat = () => {
-    const { roomId } = useSockets()
+    const { room } = useSockets()
 
     return (
         <motion.div
@@ -34,7 +34,7 @@ const Chat = () => {
             <AnimatePresence
                 mode='wait'>
                 {
-                    roomId
+                    room
                     ? <Room key='room' />
                     : <NoRoom key='noRoom' />
                 }

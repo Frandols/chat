@@ -6,7 +6,7 @@ import { MessageComponentAnimations } from '../animations'
 
 const Message = ({
     message,
-    username,
+    user,
     time,
     messageOut
 }) => {
@@ -28,7 +28,7 @@ const Message = ({
                     ? (
                         <header
                             className="message-header">
-                            {username}
+                            {user.name}
                         </header>
                     ) : null
                 }

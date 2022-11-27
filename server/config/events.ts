@@ -1,4 +1,4 @@
-const EVENTS = {
+export default {
     CLIENT: {
         SET_NAME: 'SET_NAME',
         CREATE_ROOM: 'CREATE_ROOM',
@@ -13,7 +13,6 @@ const EVENTS = {
         ROOM_LEFT: 'ROOM_LEFT',
         MESSAGE_SENDED: 'MESSAGE_SENDED'
     },
-    CONNECTION: 'connection'
+    CONNECT: 'connect',
+    DISCONNECT: 'disconnect'
 }
-
-export default EVENTS

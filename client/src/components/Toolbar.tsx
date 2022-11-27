@@ -3,12 +3,12 @@ import { useSockets } from '../context/socket'
 import './Toolbar.css'
 
 const Toolbar = () => {
-    const { username } = useSockets()
+    const { user } = useSockets()
 
     return (
         <div
             className='toolbar'>
-            {username}
+            {user}
         </div>
     )
 }

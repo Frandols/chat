@@ -16,8 +16,8 @@ const SendMessage = () => {
 
     const {
         socket,
-        roomId,
-        username,
+        room,
+        user,
         messages,
         setMessages
     } = useSockets()
@@ -32,9 +32,8 @@ const SendMessage = () => {
         socket.emit(
             EVENTS.CLIENT.SEND_MESSAGE,
             {
-                roomId,
-                message,
-                username
+                room,
+                message
             }
         )
 
@@ -43,7 +42,7 @@ const SendMessage = () => {
         setMessages([
             ...messages,
             {
-                username: "You",
+                user,
                 message,
                 time: `${date.getHours()}:${date.getMinutes()}`,
                 messageOut: true
