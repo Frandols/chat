@@ -6,11 +6,10 @@ const Nav = () => {
             className='nav'>
             <a
                 className='nav-site-link'
-                href='/'
-                rel='noreferrer'>
+                href='/'>
                 <img
                     src='assets/icon.svg'
-                    alt='Francisco De Los Santos Logo'
+                    alt='logo'
                     width={40}
                     height={40}
                 />
@@ -22,10 +21,12 @@ const Nav = () => {
             <a
                 className='nav-portfolio-link'
                 href='https://franciscodelossantos.com'
-                target='_blank'>
+                target='_blank'
+                rel='noreferrer'>
                 <img
                     className='nav-portfolio-link-image'
                     src='https://franciscodelossantos.com/assets/img/profile.jpg'
+                    alt='profile'
                     width={30}
                     height={30}
                 />
