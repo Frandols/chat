@@ -11,6 +11,8 @@ import {
 
 import { useSockets } from '../context/socket'
 
+import icon from '../assets/icon.svg'
+
 import './Login.css'
 
 import { LoginComponentAnimations } from '../animations'
@@ -48,7 +50,7 @@ const Login = () => {
             exit='exit'>
             <img
                 className='logo'
-                src='/assets/icon.svg'
+                src={icon}
                 alt='logo'
                 width={75}
                 height={75}

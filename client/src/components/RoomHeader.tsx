@@ -9,6 +9,8 @@ import { Button } from '../components'
 
 import { useSockets } from '../context/socket'
 
+import chat from '../assets/chat.png'
+
 import './RoomHeader.css'
 
 import { RoomHeaderComponentAnimations } from '../animations'
@@ -29,7 +31,7 @@ const RoomHeader = () => {
         <header
             className='room-header'>
             <img
-                src='assets/chat.png'
+                src={chat}
                 alt='Chat Logo'
                 width={40}
                 height={40}

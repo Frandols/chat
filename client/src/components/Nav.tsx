@@ -1,3 +1,5 @@
+import icon from '../assets/icon.svg'
+
 import './Nav.css'
 
 const Nav = () => {
@@ -8,7 +10,7 @@ const Nav = () => {
                 className='nav-site-link'
                 href='/'>
                 <img
-                    src='assets/icon.svg'
+                    src={icon}
                     alt='logo'
                     width={40}
                     height={40}

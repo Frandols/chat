@@ -2,6 +2,8 @@ import type { MouseEventHandler } from 'react'
 
 import { motion } from 'framer-motion'
 
+import chat from '../assets/chat.png'
+
 import './RoomItem.css'
 
 import { RoomItemComponentAnimations } from '../animations'
@@ -31,7 +33,7 @@ const RoomItem = ({
                 delay: index * .2
             }}>
             <img
-                src='assets/chat.png'
+                src={chat}
                 alt='Chat Logo'
                 width={40}
                 height={40}

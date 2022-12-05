@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 
+import emoji from '../assets/emoji.png'
+
 import './NoRoom.css'
 
 import { NoRoomComponentAnimations } from '../animations'
@@ -12,7 +14,7 @@ const NoRoom = () => {
             initial='visible'
             exit='exit'>
             <motion.img
-                src='assets/emoji.png'
+                src={emoji}
                 alt='Star Eyes Emoji'
                 width={150}
                 height={150}
