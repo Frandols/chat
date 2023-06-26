@@ -13,7 +13,10 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
       <main className="main">{children}</main>
       <footer className="footer">
         <p className="footer-portfolio-link">
-          Created by <a href="">Francisco De Los Santos</a>
+          Created by{' '}
+          <a href="https://portfolio-frandols.vercel.app/" target="_blank">
+            Francisco De Los Santos
+          </a>
         </p>
       </footer>
     </>
