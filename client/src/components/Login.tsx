@@ -5,7 +5,7 @@ import { Input, Button } from '../components'
 
 import { useSockets } from '../context/socket'
 
-import icon from '../assets/icon.svg'
+import icon from '../assets/logo-light.svg'
 
 import './Login.css'
 
