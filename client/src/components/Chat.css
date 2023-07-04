@@ -14,7 +14,7 @@
 @media (max-width: 1026px) {
   .chat {
     border: none;
-    height: 100%;
+    height: calc(100vh - 3.5rem - 57px);
     border-radius: 0;
   }
 }
