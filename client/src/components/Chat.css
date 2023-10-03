@@ -1,20 +1,20 @@
 .chat {
-  position: relative;
-  width: 100%;
-  max-width: 1026px;
-  height: 800px;
-  display: grid;
-  grid-template-columns: 362px auto;
-  grid-template-rows: 72px auto;
-  border-radius: 1rem;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.025);
+	position: relative;
+	width: 100%;
+	max-width: 1026px;
+	height: 800px;
+	display: grid;
+	grid-template-columns: 362px auto;
+	grid-template-rows: 72px auto;
+	border-radius: 1rem;
+	overflow: hidden;
+	border: 1px solid rgba(255, 255, 255, 0.025);
 }
 
 @media (max-width: 1026px) {
-  .chat {
-    border: none;
-    height: calc(100vh - 3.5rem - 57px);
-    border-radius: 0;
-  }
+	.chat {
+		border: none;
+		height: calc(100dvh - 3.5rem - 57px);
+		border-radius: 0;
+	}
 }
